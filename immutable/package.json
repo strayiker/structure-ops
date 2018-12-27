@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "main": "../dist/structure-ops.immutable.cjs.js",
+  "module": "../dist/structure-ops.immutable.esm.js"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "@sadbox/structure-ops",
+  "version": "0.0.2",
+  "description": "Set of basic operations over plain js structures",
+  "main": "dist/structure-ops.cjs.js",
+  "module": "dist/structure-ops.esm.js",
+  "author": "Kirill Mesnyankin <sadbox.games@gmail.com>",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "rollup -c",
+    "lint": "eslint src",
+    "size": "bundlesize"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/structure-ops.min.js",
+      "maxSize": "1kB"
+    },
+    {
+      "path": "./dist/structure-ops.immutable.min.js",
+      "maxSize": "1.2kB"
+    }
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "bundlesize": "^0.17.0",
+    "eslint": "^5.11.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3",
+    "rollup": "^0.68.2",
+    "rollup-plugin-babel": "^4.1.0",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-terser": "^3.0.0"
+  }
+}
