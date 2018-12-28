@@ -1,6 +1,6 @@
 {
   "name": "@sadbox/structure-ops",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Set of basic operations over plain js structures",
   "main": "dist/structure-ops.cjs.js",
   "module": "dist/structure-ops.esm.js",
@@ -11,7 +11,9 @@
     "prebuild": "rimraf dist",
     "build": "rollup -c",
     "lint": "eslint src",
-    "size": "bundlesize"
+    "size": "bundlesize",
+    "test": "yarn lint",
+    "prepublish": "yarn test && yarn build"
   },
   "husky": {
     "hooks": {
