@@ -5,7 +5,7 @@ export default (collection, ...sources) => {
   checkCollection(collection);
 
   if (isArray(collection)) {
-    return Array.prototype.push.apply(collection, ...sources);
+    return sources.forEach(s => Array.prototype.push.apply(collection, s));
   }
 
   return Object.assign(collection, ...sources);
