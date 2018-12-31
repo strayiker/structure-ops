@@ -1,8 +1,4 @@
 export default (collection, cb) => {
-  if (!collection) {
-    return;
-  }
-
   if (typeof collection.forEach === 'function') {
     collection.forEach(cb);
     return;

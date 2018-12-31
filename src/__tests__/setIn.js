@@ -5,10 +5,10 @@ describe('setIn()', () => {
     process.env.IMMUTABLE = true;
 
     const o = { a: { b: [{ c: new Map([['d', { e: 0 }]]) }] } };
-    const res = setIn(o, 'a.b.0.c.d.e', 1);
+    const res = setIn(o, 'a.b.0.c.d.e.f', 1);
 
     expect(res).toEqual({
-      a: { b: [{ c: new Map([['d', { e: 1 }]]) }] },
+      a: { b: [{ c: new Map([['d', { e: { f: 1 } }]]) }] },
     });
     expect(o).toEqual({
       a: { b: [{ c: new Map([['d', { e: 0 }]]) }] },
@@ -25,10 +25,10 @@ describe('setIn()', () => {
 
   it('mutable -> should set value at path', () => {
     const o = { a: { b: [{ c: new Map([['d', { e: 0 }]]) }] } };
-    const res = setIn(o, 'a.b.0.c.d.e', 1);
+    const res = setIn(o, 'a.b.0.c.d.e.f', 1);
 
     expect(res).toEqual({
-      a: { b: [{ c: new Map([['d', { e: 1 }]]) }] },
+      a: { b: [{ c: new Map([['d', { e: { f: 1 } }]]) }] },
     });
     expect(o).toBe(res);
     expect(o.a).toBe(res.a);

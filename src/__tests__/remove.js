@@ -26,6 +26,18 @@ describe('remove()', () => {
     delete process.env.IMMUTABLE;
   });
 
+  it("immutable -> shouldn't affect collection if key doesn't exist", () => {
+    process.env.IMMUTABLE = true;
+
+    const obj = {};
+    const res = remove(obj, 'a');
+
+    expect(res).toEqual({});
+    expect(res).toBe(obj);
+
+    delete process.env.IMMUTABLE;
+  });
+
   it('mutable -> should remove value at key', () => {
     const obj = { a: 1 };
     const arr = [1];

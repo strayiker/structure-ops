@@ -37,4 +37,10 @@ describe('removeIn()', () => {
     expect(o.a.b[0].c).toBe(res.a.b[0].c);
     expect(o.a.b[0].c.get('d')).toBe(res.a.b[0].c.get('d'));
   });
+
+  it("shouldn't affect collection if path doest not exitst", () => {
+    const obj = { a: { b: { c: 0 } } };
+
+    expect(removeIn(obj, 'a.b.c.d')).toBe(obj);
+  });
 });

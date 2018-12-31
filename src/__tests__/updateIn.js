@@ -37,4 +37,12 @@ describe('updateIn()', () => {
     expect(o.a.b[0].c).toBe(res.a.b[0].c);
     expect(o.a.b[0].c.get('d')).toBe(res.a.b[0].c.get('d'));
   });
+
+  it('mutable -> should handle zero length path', () => {
+    const o = {};
+    const res = updateIn(o, '', 1);
+
+    expect(res).toEqual({});
+    expect(res).toBe(o);
+  });
 });

@@ -26,6 +26,18 @@ describe('set()', () => {
     delete process.env.IMMUTABLE;
   });
 
+  it("immutable -> shouldn't copy collection if value is the same", () => {
+    process.env.IMMUTABLE = true;
+
+    const obj = { a: 1 };
+    const res = set(obj, 'a', 1);
+
+    expect(res).toEqual({ a: 1 });
+    expect(res).toBe(obj);
+
+    delete process.env.IMMUTABLE;
+  });
+
   it('mutable -> should set value at key', () => {
     const obj = {};
     const arr = [];

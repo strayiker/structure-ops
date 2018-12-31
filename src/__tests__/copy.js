@@ -25,7 +25,7 @@ describe('copy()', () => {
     expect(map).toEqual(mapCopy);
   });
 
-  it("should't create copy of non-collection values", () => {
+  it("shouldn't create copy of non-collection values", () => {
     const invalid = [() => {}, new Date(), Boolean(false), Symbol('')];
 
     invalid.forEach(v => expect(v).toBe(copy(v)));

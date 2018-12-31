@@ -1,1 +1,1 @@
-export default string => string.match(/[^[.[|\]]+/g);
+export default string => string.match(/[^[.[|\]]+/g) || [];

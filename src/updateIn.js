@@ -13,7 +13,7 @@ const updateDeep = (collection, path, index, lastIndex, updater) => {
 
   let next = oldValue;
 
-  if (index === lastIndex) {
+  if (index >= lastIndex) {
     next = typeof updater === 'function' ? updater(oldValue) : updater;
   } else {
     if (!canGoDeep) {

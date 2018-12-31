@@ -143,7 +143,7 @@ describe('merge()', () => {
     delete process.env.IMMUTABLE;
   });
 
-  it("immutable -> should't create a copy if unnecessary", () => {
+  it("immutable -> shouldn't create a copy if unnecessary", () => {
     process.env.IMMUTABLE = true;
 
     const a = { a: 1 };
@@ -307,5 +307,13 @@ describe('merge()', () => {
     expect(res).toBe(a);
     expect(res).not.toBe(e);
     expect(e).toEqual(new Map([['e', 1]]));
+  });
+
+  it('should return source if non-data-structure value was provided', () => {
+    const a = [];
+    const b = 1;
+
+    expect(merge(a, b)).toBe(b);
+    expect(merge(b, a)).toBe(a);
   });
 });
