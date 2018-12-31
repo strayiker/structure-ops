@@ -11,63 +11,38 @@ const cjs = (overrides = {}) => ({
   ...overrides,
 });
 
-const esm = (overrides = {}) => ({
-  format: 'esm',
-  sourcemap: true,
-  ...overrides,
-});
-
-const plugins = ({ immutable = false, minimize = false } = {}) =>
-  [
-    sourceMaps(),
-    babel(),
-    replace({
-      'process.env.IMMUTABLE': JSON.stringify(immutable),
-    }),
-    minimize &&
-      terser({
-        sourcemap: true,
-      }),
-  ].filter(Boolean);
-
-const mutable = {
-  input: './src/index.js',
-  output: [
-    cjs({ file: 'dist/structure-ops.cjs.js' }),
-    esm({ file: 'dist/structure-ops.esm.js' }),
-  ],
-  plugins: plugins(),
-};
-
-const immutable = {
-  input: './src/index.immutable.js',
-  output: [
-    cjs({ file: 'dist/structure-ops.immutable.cjs.js' }),
-    esm({ file: 'dist/structure-ops.immutable.esm.js' }),
-  ],
-  plugins: plugins({ immutabl: true }),
-};
-
-const standalone = {
-  input: './src/index.js',
-  output: {
-    file: 'dist/structure-ops.min.js',
-    format: 'umd',
-    name: 'structure',
+const prodPlugins = [
+  terser({
+    mangle: { module: true },
     sourcemap: true,
-  },
-  plugins: plugins({ minimize: true }),
+  }),
+];
+
+const plugins = ({ immutable, prod }) => [
+  babel(),
+  sourceMaps(),
+  replace({
+    'process.env.IMMUTABLE': JSON.stringify(immutable),
+    'process.env.NODE_ENV': JSON.stringify(prod ? 'production' : 'development'),
+  }),
+  ...(prod ? prodPlugins : []),
+];
+
+const config = ({ immutable = false, prod = false, format = cjs } = {}) => {
+  const devSuffix = prod ? '' : 'develop.';
+  const immSuffix = immutable ? 'immutable.' : '';
+  const prefix = `dist/structure-ops.${immSuffix}${devSuffix}`;
+
+  return {
+    input: './src/index.js',
+    output: [format({ file: `${prefix}cjs.js` })],
+    plugins: plugins({ immutable, prod }),
+  };
 };
 
-const standaloneImmutable = {
-  input: './src/index.immutable.js',
-  output: {
-    file: 'dist/structure-ops.immutable.min.js',
-    format: 'umd',
-    name: 'structure',
-    sourcemap: true,
-  },
-  plugins: plugins({ immutable: true, minimize: true }),
-};
-
-export default [mutable, immutable, standalone, standaloneImmutable];
+export default [
+  config(),
+  config({ prod: true }),
+  config({ immutable: true }),
+  config({ immutable: true, prod: true }),
+];

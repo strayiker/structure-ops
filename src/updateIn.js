@@ -1,8 +1,7 @@
-import checkCollection from './utils/checkCollection';
-import isDataStructure from './utils/isDataStructure';
-import isArrayIndex from './utils/isArrayIndex';
-import castPath from './utils/castPath';
 import VOID from './utils/void';
+import castPath from './utils/castPath';
+import isArrIndex from './utils/isArrIndex';
+import isKeyed from './utils/isKeyed';
 import get from './get';
 import remove from './remove';
 import set from './set';
@@ -10,27 +9,29 @@ import set from './set';
 const updateDeep = (collection, path, index, lastIndex, updater) => {
   const key = path[index];
   const oldValue = get(collection, key);
+  const canGoDeep = isKeyed(oldValue);
 
-  let newValue = oldValue;
+  let next = oldValue;
 
   if (index === lastIndex) {
-    newValue = updater(oldValue);
+    next = typeof updater === 'function' ? updater(oldValue) : updater;
   } else {
-    if (!isDataStructure(oldValue)) {
-      newValue = isArrayIndex(path[index + 1]) ? [] : {};
+    if (!canGoDeep) {
+      if (updater === VOID) {
+        return collection;
+      }
+      next = isArrIndex(path[index + 1]) ? [] : {};
     }
-
-    newValue = updateDeep(newValue, path, index + 1, lastIndex, updater);
+    next = updateDeep(next, path, index + 1, lastIndex, updater);
   }
 
-  return newValue === VOID
-    ? remove(collection, key)
-    : set(collection, key, newValue);
+  return next === VOID ? remove(collection, key) : set(collection, key, next);
 };
 
 export default (collection, strOrPath, updater) => {
-  checkCollection(collection);
-
   const path = castPath(strOrPath, collection);
-  return updateDeep(collection, path, 0, path.length - 1, updater);
+
+  return path.length > 0
+    ? updateDeep(collection, path, 0, path.length - 1, updater)
+    : collection;
 };

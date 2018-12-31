@@ -1,14 +1,11 @@
-import isArray from './isArray';
+import isArr from './isArr';
 import stringToPath from './stringToPath';
-import isDataStructure from './isDataStructure';
-import hasOwnProperty from './hasOwnProperty';
+import has from '../has';
 
 export default (value, collection) => {
-  if (isArray(value)) {
-    return value;
+  if (has(collection, value)) {
+    return [value];
   }
 
-  return isDataStructure(collection) && hasOwnProperty.call(collection, value)
-    ? [value]
-    : stringToPath(value);
+  return isArr(value) ? value : stringToPath(value);
 };

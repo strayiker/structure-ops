@@ -1,19 +1,15 @@
-import castPath from './utils/castPath';
 import VOID from './utils/void';
+import castPath from './utils/castPath';
 import get from './get';
 
 export default (collection, stringOrPath, defaultValue) => {
   const path = castPath(stringOrPath, collection);
 
-  let result = collection;
+  path.find(key => {
+    // eslint-disable-next-line no-param-reassign
+    collection = get(collection, key, VOID);
+    return collection === VOID;
+  });
 
-  for (let i = 0; i < path.length; i += 1) {
-    result = get(result, path[i], VOID);
-
-    if (result === VOID) {
-      return defaultValue;
-    }
-  }
-
-  return result;
+  return collection !== VOID ? collection : defaultValue;
 };

@@ -1,21 +1,18 @@
-import checkCollection from './utils/checkCollection';
-import hasOwnProperty from './utils/hasOwnProperty';
+import checkKeyed from './utils/checkKeyed';
+import setKeyed from './setKeyed';
 import copy from './copy';
+import get from './get';
 
 export default (collection, key, value) => {
-  checkCollection(collection);
-
-  let res = collection;
+  checkKeyed(collection, key);
 
   if (process.env.IMMUTABLE) {
-    if (hasOwnProperty.call(collection, key) && value === collection[key]) {
-      return res;
+    if (get(collection, key) === value) {
+      return collection;
     }
-
-    res = copy ? copy(collection) : collection;
+    // eslint-disable-next-line no-param-reassign
+    collection = copy(collection);
   }
 
-  res[key] = value;
-
-  return res;
+  return setKeyed(collection, key, value);
 };

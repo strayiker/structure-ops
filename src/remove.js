@@ -1,26 +1,30 @@
-import checkCollection from './utils/checkCollection';
-import isArray from './utils/isArray';
-import hasOwnProperty from './utils/hasOwnProperty';
+import checkKeyed from './utils/checkKeyed';
+import isArr from './utils/isArr';
+import isMap from './utils/isMap';
+import isSet from './utils/isSet';
 import copy from './copy';
+import has from './has';
 
 export default (collection, key) => {
-  checkCollection(collection);
+  checkKeyed(collection, key);
 
-  let res = collection;
-
-  if (!hasOwnProperty.call(res, key)) {
-    return res;
+  if (!has(collection, key)) {
+    return collection;
   }
 
   if (process.env.IMMUTABLE) {
-    res = copy(collection);
+    // eslint-disable-next-line no-param-reassign
+    collection = copy(collection);
   }
 
-  if (isArray(res)) {
-    res.splice(key, 1);
+  if (isArr(collection)) {
+    collection.splice(key, 1);
+  } else if (isMap(collection) || isSet(collection)) {
+    collection.delete(key);
   } else {
-    delete res[key];
+    // eslint-disable-next-line no-param-reassign
+    delete collection[key];
   }
 
-  return res;
+  return collection;
 };

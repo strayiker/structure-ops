@@ -1,5 +1,4 @@
-import updateIn from './updateIn';
 import VOID from './utils/void';
+import updateIn from './updateIn';
 
-export default (collection, strOrPath) =>
-  updateIn(collection, strOrPath, () => VOID);
+export default (collection, path) => updateIn(collection, path, VOID);

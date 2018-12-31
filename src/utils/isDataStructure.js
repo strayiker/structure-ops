@@ -1,4 +1,7 @@
-import isArrayLike from './isArrayLike';
-import isPlainObject from './isPlainObject';
+import isArr from './isArr';
+import isMap from './isMap';
+import isPlainObj from './isPlainObj';
+import isSet from './isSet';
 
-export default value => isArrayLike(value) || isPlainObject(value);
+export default value =>
+  isPlainObj(value) || isArr(value) || isMap(value) || isSet(value);
