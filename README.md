@@ -1,8 +1,9 @@
-![https://www.npmjs.com/package/@sadbox/structure-ops](https://badgen.net/npm/v/@sadbox/structure-ops)
-![https://www.npmjs.com/package/@sadbox/structure-ops](https://badgen.net/npm/license/@sadbox/structure-ops)
-![](https://badgen.net/david/dep/strayiker/structure-ops)
-![](https://badgen.net/bundlephobia/minzip/@sadbox/structure-ops)
-![](https://badgen.net/travis/strayiker/structure-ops)
+[![Version](https://badgen.net/npm/v/@sadbox/structure-ops)](https://www.npmjs.com/package/@sadbox/structure-ops)
+[![License](https://badgen.net/npm/license/@sadbox/structure-ops)](https://www.npmjs.com/package/@sadbox/structure-ops)
+[![Dependencies](https://badgen.net/david/dep/strayiker/structure-ops)](https://www.npmjs.com/package/@sadbox/structure-ops)
+[![Bundle Size](https://badgen.net/bundlephobia/minzip/@sadbox/structure-ops)](https://www.npmjs.com/package/@sadbox/structure-ops)
+[![Build Status](https://travis-ci.com/strayiker/structure-ops.svg?branch=master)](https://travis-ci.com/strayiker/structure-ops)
+[![Codecov](https://codecov.io/gh/strayiker/structure-ops/branch/master/graph/badge.svg)](https://codecov.io/gh/strayiker/structure-ops)
 
 # JS Data Structure Operations (Mutable/Immutable)
 
