@@ -1,3 +1,9 @@
+![https://www.npmjs.com/package/@sadbox/structure-ops](https://badgen.net/npm/v/@sadbox/structure-ops)
+![https://www.npmjs.com/package/@sadbox/structure-ops](https://badgen.net/npm/license/@sadbox/structure-ops)
+![](https://badgen.net/david/dep/strayiker/structure-ops)
+![](https://badgen.net/bundlephobia/minzip/@sadbox/structure-ops)
+![](https://badgen.net/travis/strayiker/structure-ops)
+
 # JS Data Structure Operations (Mutable/Immutable)
 
 A lightweight (`~1kb`) set of basic operations defined on a plain js data structures (Object, Array, Map, Set). Provides two sets of operations for your choice: mutable or immutable.

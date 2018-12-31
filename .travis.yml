@@ -1,0 +1,28 @@
+language: node_js
+dist: trusty
+node_js:
+  - node
+branches:
+  only:
+    - master
+cache:
+  yarn: true
+  directories:
+    - .npm
+install:
+  - yarn install --frozen-lockfile
+  - yarn global add codecov
+script:
+  - node --version
+  - yarn --version
+  - yarn build
+  - yarn lint
+  - yarn size
+  - yarn test
+  - codecov
+notifications:
+  slack:
+    rooms:
+      - secure: wLXtDw3HE1BqdAeWcI8VsmtOBavlld2WsCA86noHG9/8CRhVhxs3/xi+peMiusnzQLPH2EnSDjpf6T4aw8vcszlnrS3Q08JuQK+v9LPQNfTMQABATZm4RIVdSut7ZzzY24cC27S3Yn2Z8gVVy+Xn1mrt6r0fXNDicK2PihjeH/AAz/w8zwEtBN/rixQaOSSfbKpJMW2bHVyVT57JLj22ldkZlb8FR1gki/oKJM6GkRW9yaPFhyJYdT7U5sUKCU6R8v/BkoSgj9hdd3nMVtDERSuK8MqlTIoUS0jqVQt1U1fZtrOfnX9vwTPpwCsPheZGqaKpF701xC6kwrBWTW1Ac7WZyU4zwQLjz4zLmyN5o7MmYXhzxozPep1VGAl4h632LvySOf0Wm02/IRBgmsLvivjMTf2ZDx5DVeWHBVb04y/ZLgZCPogviOEr8jVGWFTfqXBBRXcyUpIAhY68msBvdWR5pitr770lVkWXGkZB/jQUl6ZDxMR3O134n6oh/luubv+qN/H7XyuqfCRRDowVmgK6SJ5HIIJKWDfiYLp7rvPfb6PAOGpZp0b8zUciruhD8fbL1dvnEYmhMbcs9GoYiW/e6O5GvSBSV9uc9v0yc7ictrfBxhf+kTfrUfz3e+D7aLFSV6x456mAi4PDyTVkWhM5UhnscRU/xu/Wl0/48LY=
+    on_success: change
+    on_failure: change

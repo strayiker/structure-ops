@@ -10,13 +10,17 @@
     "dist",
     "immutable"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strayiker/structure-ops.git"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "rollup -c",
     "lint": "eslint src",
     "size": "bundlesize",
-    "test": "jest && bundlesize",
-    "prepublish": "yarn lint && yarn test && yarn build"
+    "test": "jest",
+    "prepublish": "yarn build"
   },
   "husky": {
     "hooks": {
@@ -24,7 +28,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,json,md}": [
+    "src/**/*.{js}": [
       "prettier --write",
       "git add"
     ]
@@ -62,6 +66,7 @@
   },
   "jest": {
     "testEnvironment": "node",
+    "collectCoverage": true,
     "roots": [
       "<rootDir>/src"
     ]
