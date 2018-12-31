@@ -1,6 +1,6 @@
 {
   "name": "@sadbox/structure-ops",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Set of basic operations over plain js structures",
   "main": "index.js",
   "author": "Kirill Mesnyankin <sadbox.games@gmail.com>",
