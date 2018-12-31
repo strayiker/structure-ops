@@ -6,6 +6,10 @@
   "author": "Kirill Mesnyankin <sadbox.games@gmail.com>",
   "license": "MIT",
   "sideEffects": false,
+  "files": [
+    "dist",
+    "immutable"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "rollup -c",
