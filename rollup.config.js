@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import babel from 'rollup-plugin-babel';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import replace from 'rollup-plugin-replace';
@@ -29,9 +28,9 @@ const plugins = ({ immutable, prod }) => [
 ];
 
 const config = ({ immutable = false, prod = false, format = cjs } = {}) => {
-  const devSuffix = prod ? '' : 'develop.';
-  const immSuffix = immutable ? 'immutable.' : '';
-  const prefix = `dist/structure-ops.${immSuffix}${devSuffix}`;
+  const env = prod ? '' : 'dev.';
+  const immut = immutable ? 'immutable.' : '';
+  const prefix = `dist/structure-ops.${immut}${env}`;
 
   return {
     input: './src/index.js',

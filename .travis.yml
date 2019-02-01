@@ -13,13 +13,11 @@ install:
 - yarn install --frozen-lockfile
 - yarn global add codecov
 script:
-- node --version
-- yarn --version
-- yarn build
-- yarn lint
-- yarn size
-- yarn test
-- codecov
+  - yarn build
+  - yarn lint
+  - yarn size
+  - yarn test
+  - codecov
 notifications:
   slack:
     secure: QZgwmnnjtJraAyzEWsOyjlLzbWkBPSNpFFe6n0c25TPdxfnVeH8kDLEdB6eX9u59FKaaKi2tQMZQG7CPLfw9VnYc1slY7TvPn7cZtL1/uoMqZ9ekd3E0lWqjsJS3hEQXFEdsuPINsz8MHV6fGZHyVfXyBob01D8S8TaGMR00oQqc72RPZ0UMGme5GFHHOLXSc/SouXHzYl88sCVfHcQHYkBjbUKF+ceLlaSQ8IGNl6Yy25XYfIGZpBG2DP+Hkv519GkQr03Wy1X9rdNQadF76oRAGM24KJURF8KjAKSkTrv1WW5ZUOCYtFGrFNCmPsbz3EczctpBJsmqMN9casRK2dW23HpShEO5FWznuVsgpftvD+PjVz8sMl9oRFGZGhLW3Ifsjx+aK0G9YeUM37IjYhMcLYXHcfbRIaT9LUFj+Vfwrm9uI64vvOC0m15fL5ZiEWGe6Vg3AGwqm6WGL5v8CVR4i0F+UuER7mCAYWaITzWK2RzvBwLeoTDrq2AyNoQvwf3YbEs1l+hzb/nj++Y52h8SozahapEv6ySq0Okj+VH+xMc3Mru2LfxmhQ8GLSVdZcls9b9SAIp811WHqN0tHpLfedQkV0KnJrhtrPNd6J3EMP6qsjvrajIKIMFT1zrSX5CbDpLlV8VOKkVByRuev4e+AT7rkapB5+1sTQxLbqo=

@@ -22,27 +22,6 @@
     "test": "jest",
     "prepublish": "yarn build"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "bundlesize": [
-    {
-      "path": "./dist/structure-ops.cjs.js",
-      "maxSize": "1.2kB"
-    },
-    {
-      "path": "./dist/structure-ops.immutable.cjs.js",
-      "maxSize": "1.2kB"
-    }
-  ],
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
@@ -66,9 +45,29 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "collectCoverage": true,
     "roots": [
       "<rootDir>/src"
     ]
-  }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/structure-ops.cjs.js",
+      "maxSize": "1.2kB"
+    },
+    {
+      "path": "./dist/structure-ops.immutable.cjs.js",
+      "maxSize": "1.2kB"
+    }
+  ]
 }
